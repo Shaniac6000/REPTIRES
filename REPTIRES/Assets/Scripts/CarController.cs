@@ -11,6 +11,8 @@ public class CarController : MonoBehaviour
 
     private Vector3 carVelocity;
 
+    private Quaternion tempRotation;
+
     [SerializeField] private float moveSpeed;
 
     private float wheelRotation = 0;
@@ -36,7 +38,10 @@ public class CarController : MonoBehaviour
         carVelocity.y = rb.linearVelocity.y;
         rb.linearVelocity = carVelocity;
         
-        carRotation -= currentSpeed * wheelRotation * Time.deltaTime / 2;
-        transform.localRotation = Quaternion.Euler(transform.localRotation.x, carRotation, transform.localRotation.z);
+        carRotation -= currentSpeed * wheelRotation * Time.deltaTime / 4;
+        tempRotation = Quaternion.AngleAxis(carRotation, Vector3.up);
+        tempRotation.x = transform.localRotation.x;
+        tempRotation.z = transform.localRotation.z;
+        transform.localRotation = tempRotation;
     }
 }
