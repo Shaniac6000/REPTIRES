@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    [SerializeField] private Transform steeringWheel;
     [SerializeField] private Transform leftWheel;
     [SerializeField] private Transform rightWheel;
     private Rigidbody rb;
@@ -27,6 +28,7 @@ public class CarController : MonoBehaviour
         currentSpeed = Input.GetAxis("Vertical") * moveSpeed;
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * 30;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
+        steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
         leftWheel.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
         rightWheel.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
 
