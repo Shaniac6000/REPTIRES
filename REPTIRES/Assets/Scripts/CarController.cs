@@ -1,19 +1,28 @@
 using System;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
     [SerializeField] private Transform steeringWheel;
-    [SerializeField] private Transform leftWheel;
-    [SerializeField] private Transform rightWheel;
+    [SerializeField] private GameObject frontLeftWheel;
+    [SerializeField] private GameObject frontRightWheel;
+
+    [SerializeField] private WheelCollider backLeftWheel;
+    [SerializeField] private WheelCollider backRightWheel;
     private Rigidbody rb;
 
     private Vector3 carVelocity;
 
     private Quaternion tempRotation;
 
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float acceleration = 500;
+
+    [SerializeField] private float brakeForce = 300;
+
+    private float currentAcceleration = 0;
+    private float currentBrakeForce = 0;
 
     private float wheelRotation = 0;
     private float carRotation = 0;
@@ -25,23 +34,33 @@ public class CarController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        currentSpeed = Input.GetAxis("Vertical") * moveSpeed;
+        currentAcceleration = acceleration * Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            currentBrakeForce = brakeForce;
+        }
+        else
+        {
+            currentBrakeForce = 0;
+        }
+
+        frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
+        frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
+
+        frontRightWheel.GetComponent<WheelCollider>().brakeTorque = currentBrakeForce;
+        frontLeftWheel.GetComponent<WheelCollider>().brakeTorque = currentBrakeForce;
+        backRightWheel.brakeTorque = currentBrakeForce;
+        backLeftWheel.brakeTorque = currentBrakeForce;
+
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * 30;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
         steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
-        leftWheel.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
-        rightWheel.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
-
-        carVelocity = transform.forward * currentSpeed;
-        carVelocity.y = rb.linearVelocity.y;
-        rb.linearVelocity = carVelocity;
-        
-        carRotation -= currentSpeed * wheelRotation * Time.deltaTime / 4;
-        tempRotation = Quaternion.AngleAxis(carRotation, Vector3.up);
-        tempRotation.x = transform.localRotation.x;
-        tempRotation.z = transform.localRotation.z;
-        transform.localRotation = tempRotation;
+        frontLeftWheel.transform.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
+        frontRightWheel.transform.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
+        frontRightWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
+        frontLeftWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
     }
 }
