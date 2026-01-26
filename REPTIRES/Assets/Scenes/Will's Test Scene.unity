@@ -9643,7 +9643,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20.700012, y: -14.049988}
-  m_SizeDelta: {x: 200, y: 100}
+  m_SizeDelta: {x: 409.83, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &496041074
 MonoBehaviour:
@@ -10745,7 +10745,7 @@ GameObject:
   - component: {fileID: 953224122}
   m_Layer: 0
   m_Name: TrackManager
-  m_TagString: Untagged
+  m_TagString: TrackManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10780,9 +10780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   timerText: {fileID: 496041074}
+  centerText: {fileID: 792120218}
   currentTime: 0
-  hasStarted: 0
-  hasEnded: 0
 --- !u!1 &1115611853
 GameObject:
   m_ObjectHideFlags: 0
@@ -10922,6 +10921,7 @@ GameObject:
   - component: {fileID: 1207686295}
   - component: {fileID: 1207686294}
   - component: {fileID: 1207686293}
+  - component: {fileID: 1207686296}
   m_Layer: 0
   m_Name: EndVolume
   m_TagString: Untagged
@@ -11022,6 +11022,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207686291}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1207686296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207686291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfadfeb8d1ab8b458da3dc98f4b3e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1239765150
 GameObject:
   m_ObjectHideFlags: 0

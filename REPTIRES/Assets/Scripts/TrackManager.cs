@@ -5,16 +5,17 @@ using UnityEngine;
 public class TrackManager : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI centerText;
     public float currentTime = 0f;
 
-    public bool hasStarted = false;
-    public bool hasEnded = false;
+    static public bool hasStarted = false;
+    static public bool hasEnded = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(Wait(5));
-        hasStarted = true;
+        centerText.enabled = true;
+        StartCoroutine(StartTimer(5));
     }
 
     // Update is called once per frame
@@ -26,12 +27,34 @@ public class TrackManager : MonoBehaviour
 
             float min = Mathf.FloorToInt(currentTime / 60);
             float sec = Mathf.FloorToInt(currentTime % 60);
-            timerText.text = string.Format("{0:00}:{1:00}", min, sec);
+            float ms = Mathf.FloorToInt((currentTime % 1.00f) * 100f);
+            timerText.text = string.Format("{0:00}:{1:00}", min, sec) + ":" + ms.ToString();
+        }
+
+        else if (hasEnded)
+        {
+            centerText.text = "end!";
+            centerText.enabled = true;
         }
     }
 
-    IEnumerator Wait(float s)
+    IEnumerator StartTimer(int n)
     {
-        yield return new WaitForSeconds(s);
+        int timer = n;
+        while (timer > 0)
+        {
+            centerText.text = timer.ToString();
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+        centerText.text = "START!";
+        hasStarted = true;
+        yield return new WaitForSeconds(1);
+        centerText.enabled = false;
+    }
+
+    public static void EndTrack()
+    {
+        hasEnded = true;
     }
 }
