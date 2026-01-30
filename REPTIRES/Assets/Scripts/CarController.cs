@@ -2,6 +2,7 @@ using System;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -62,5 +63,12 @@ public class CarController : MonoBehaviour
         frontRightWheel.transform.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
         frontLeftWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
+
+        //TESTING PURPOSES ONLY, REMOVE AFTER ACTUALLY MAKING LEVELS
+        if (Input.GetKey(KeyCode.L))
+        {
+            LevelManagement.SetHighest(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(0);
+        }
     }
 }
