@@ -68716,7 +68716,7 @@ GameObject:
   - component: {fileID: 1518994454}
   - component: {fileID: 1518994453}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Main window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69697,6 +69697,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2263256737347152443, guid: 02ea59cbe8d61d346bfd054a9500c512, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d05e613322180345be7589d4887c805, type: 2}
+    - target: {fileID: 3628999078033399878, guid: 02ea59cbe8d61d346bfd054a9500c512, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d05e613322180345be7589d4887c805, type: 2}
     - target: {fileID: 4411632180942506481, guid: 02ea59cbe8d61d346bfd054a9500c512, type: 3}
       propertyPath: m_Name
       value: GameUI
@@ -69741,6 +69749,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7053379083643244205, guid: 02ea59cbe8d61d346bfd054a9500c512, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d05e613322180345be7589d4887c805, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
