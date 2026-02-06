@@ -1919,10 +1919,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1617015432863493393, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
-      propertyPath: maxGearSpeed
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 2992237956562198148, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
       propertyPath: m_Name
       value: Car

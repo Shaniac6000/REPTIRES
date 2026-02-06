@@ -14,17 +14,17 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider backRightWheel;
     private Rigidbody rb;
 
-    private Vector3 carVelocity;
-
-    private Quaternion tempRotation;
-
     [SerializeField] private float acceleration = 500;
 
     [SerializeField] private float brakeForce = 300;
-    [SerializeField] private float maxGearSpeed = 10;
+    [SerializeField] private float baseGearSpeed = 10;
+    [SerializeField] private int gear = 1;
+    [SerializeField] private float gearChangeOffset = 2.5f;
     private float currentAcceleration = 0;
     private float currentBrakeForce = 0;
     private float wheelRotation = 0;
+    private float currentMaxGearSpeed = 10;
+    private float currentMinGearSpeed = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,17 +34,6 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
-
-        if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0)
-        {
-            currentBrakeForce = brakeForce;
-        }
-        else
-        {
-            currentBrakeForce = 0;
-        }
-
         if (!Input.GetKey(KeyCode.Space))
         {
             frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
@@ -64,9 +53,9 @@ public class CarController : MonoBehaviour
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
         frontLeftWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
 
-        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxGearSpeed);
+        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, currentMaxGearSpeed);
 
-        if (rb.linearVelocity.magnitude >= maxGearSpeed)
+        if (rb.linearVelocity.magnitude >= currentMaxGearSpeed)
         {
             frontRightWheel.GetComponent<WheelCollider>().brakeTorque = currentBrakeForce;
             frontLeftWheel.GetComponent<WheelCollider>().brakeTorque = currentBrakeForce;
@@ -74,7 +63,55 @@ public class CarController : MonoBehaviour
             backLeftWheel.brakeTorque = currentBrakeForce;
         }
 
-        print(rb.linearVelocity.magnitude);
+        if (rb.linearVelocity.magnitude <= .01 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            frontRightWheel.GetComponent<WheelCollider>().motorTorque = 0;
+            frontLeftWheel.GetComponent<WheelCollider>().motorTorque = 0;
+            frontRightWheel.GetComponent<WheelCollider>().brakeTorque = 0;
+            frontLeftWheel.GetComponent<WheelCollider>().brakeTorque = 0;
+            backRightWheel.brakeTorque = 0;
+            backLeftWheel.brakeTorque = 0;
+        }
+    }
+
+    void Update()
+    {
+        currentAcceleration = acceleration * Input.GetAxis("Vertical");
+
+        if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0)
+        {
+            currentBrakeForce = brakeForce;
+        }
+        else
+        {
+            currentBrakeForce = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
+        {
+            gear += 1;
+            currentMaxGearSpeed = gear * baseGearSpeed;
+            currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
+            gear += 1;
+            acceleration *= -1;
+        }
+
+        if (((Input.GetKeyDown(KeyCode.M) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset) || (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)) && gear > 1)
+        {
+            gear -= 1;
+            currentMaxGearSpeed = gear * baseGearSpeed;
+            currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.M) && gear == 1 && rb.linearVelocity.magnitude <= .01f) {
+            gear -= 1;
+            acceleration *= -1;
+        }
+
+        //print(rb.linearVelocity.magnitude);
 
         //TESTING PURPOSES ONLY, REMOVE AFTER ACTUALLY MAKING LEVELS
         if (Input.GetKey(KeyCode.L))
