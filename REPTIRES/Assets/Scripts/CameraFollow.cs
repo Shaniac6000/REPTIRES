@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
 
-    private float camTime = .1f;
+    private float camTime = .15f;
 
     // Update is called once per frame
     void Update()

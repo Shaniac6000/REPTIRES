@@ -1,6 +1,3 @@
-using System;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,7 +31,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!Input.GetKey(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Q))
         {
             frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
             frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
@@ -78,7 +75,7 @@ public class CarController : MonoBehaviour
     {
         currentAcceleration = acceleration * Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0)
+        if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0 && !Input.GetKey(KeyCode.Q))
         {
             currentBrakeForce = brakeForce;
         }
@@ -87,31 +84,34 @@ public class CarController : MonoBehaviour
             currentBrakeForce = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
+        if (Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0)
         {
-            gear += 1;
-            currentMaxGearSpeed = gear * baseGearSpeed;
-            currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+            if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
+            {
+                gear += 1;
+                currentMaxGearSpeed = gear * baseGearSpeed;
+                currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+            }
+
+            if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
+                gear += 1;
+                acceleration *= -1;
+            }
+
+            if (((Input.GetKeyDown(KeyCode.M) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset) || (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)) && gear > 1)
+            {
+                gear -= 1;
+                currentMaxGearSpeed = gear * baseGearSpeed;
+                currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+            }
+
+            if (Input.GetKeyDown(KeyCode.M) && gear == 1 && rb.linearVelocity.magnitude <= .01f) {
+                gear -= 1;
+                acceleration *= -1;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
-            gear += 1;
-            acceleration *= -1;
-        }
-
-        if (((Input.GetKeyDown(KeyCode.M) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset) || (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)) && gear > 1)
-        {
-            gear -= 1;
-            currentMaxGearSpeed = gear * baseGearSpeed;
-            currentMinGearSpeed = (gear - 1) * baseGearSpeed;
-        }
-
-        if (Input.GetKeyDown(KeyCode.M) && gear == 1 && rb.linearVelocity.magnitude <= .01f) {
-            gear -= 1;
-            acceleration *= -1;
-        }
-
-        //print(rb.linearVelocity.magnitude);
+        print(rb.linearVelocity.magnitude);
 
         //TESTING PURPOSES ONLY, REMOVE AFTER ACTUALLY MAKING LEVELS
         if (Input.GetKey(KeyCode.L))
