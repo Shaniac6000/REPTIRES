@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +12,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider backLeftWheel;
     [SerializeField] private WheelCollider backRightWheel;
     private Rigidbody rb;
+
+    [SerializeField] private TextMeshProUGUI speedometer;
+    [SerializeField] private TextMeshProUGUI gearShiftUI;
 
     [SerializeField] private float acceleration = 500;
 
@@ -84,6 +89,14 @@ public class CarController : MonoBehaviour
             currentBrakeForce = 0;
         }
 
+        if (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)
+        {
+            gear -= 1;
+            currentMaxGearSpeed = gear * baseGearSpeed;
+            currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+            gearShiftUI.text = "GEAR: " + gear;
+        }
+
         if (Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0)
         {
             if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
@@ -91,30 +104,34 @@ public class CarController : MonoBehaviour
                 gear += 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
                 currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+                gearShiftUI.text = "GEAR: " + gear;
             }
 
             if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
                 gear += 1;
                 acceleration *= -1;
+                gearShiftUI.text = "GEAR: " + gear;
             }
 
-            if (((Input.GetKeyDown(KeyCode.M) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset) || (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)) && gear > 1)
+            if (Input.GetKeyDown(KeyCode.M) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset && gear > 1)
             {
                 gear -= 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
                 currentMinGearSpeed = (gear - 1) * baseGearSpeed;
+                gearShiftUI.text = "GEAR: " + gear;
             }
 
             if (Input.GetKeyDown(KeyCode.M) && gear == 1 && rb.linearVelocity.magnitude <= .01f) {
                 gear -= 1;
                 acceleration *= -1;
+                gearShiftUI.text = "GEAR: R";
             }
         }
 
-        print(rb.linearVelocity.magnitude);
+        speedometer.text = "SPEED: " + Math.Round(rb.linearVelocity.magnitude, 2);
 
         //TESTING PURPOSES ONLY, REMOVE AFTER ACTUALLY MAKING LEVELS
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetKey(KeyCode.P))
         {
             LevelManagement.SetHighest(SceneManager.GetActiveScene().buildIndex);
             SceneManager.LoadScene(0);
