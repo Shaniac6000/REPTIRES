@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, camPoint.position + new Vector3(0, 5, 0), ref velocity, camTime);
+        transform.position = Vector3.SmoothDamp(transform.position, camPoint.position + new Vector3(0, 6, 0), ref velocity, camTime);
         transform.localRotation = Quaternion.AngleAxis(camPoint.rotation.eulerAngles.y, Vector3.up);
     }
 }

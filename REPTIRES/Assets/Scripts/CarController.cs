@@ -31,6 +31,10 @@ public class CarController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90;
+        frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90;
+        backRightWheel.steerAngle = 90;
+        backLeftWheel.steerAngle = 90;
     }
 
     // Update is called once per frame
@@ -50,10 +54,10 @@ public class CarController : MonoBehaviour
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * 30;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
         steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
-        frontLeftWheel.transform.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
-        frontRightWheel.transform.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
-        frontRightWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
-        frontLeftWheel.GetComponent<WheelCollider>().steerAngle = -wheelRotation;
+        //frontLeftWheel.transform.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
+        //frontRightWheel.transform.localRotation = Quaternion.Euler(90, 0, 90 + wheelRotation);
+        frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
+        frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
 
         rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, currentMaxGearSpeed);
 
@@ -78,7 +82,7 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        currentAcceleration = acceleration * Input.GetAxis("Vertical");
+        currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
 
         if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0 && !Input.GetKey(KeyCode.Q))
         {
