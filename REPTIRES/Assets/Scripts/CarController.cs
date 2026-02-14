@@ -134,6 +134,13 @@ public class CarController : MonoBehaviour
 
         speedometer.text = "SPEED: " + Math.Round(rb.linearVelocity.magnitude, 2);
 
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            TrackManager.hasEnded = false;
+            TrackManager.hasStarted = false;
+        }
+
         //TESTING PURPOSES ONLY, REMOVE AFTER ACTUALLY MAKING LEVELS
         if (Input.GetKey(KeyCode.P))
         {

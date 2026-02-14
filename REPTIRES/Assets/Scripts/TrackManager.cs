@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TrackManager : MonoBehaviour
 {
+    public Rigidbody car;
+    public CarController controller;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI centerText;
     public float currentTime = 0f;
@@ -16,6 +18,8 @@ public class TrackManager : MonoBehaviour
     {
         centerText.enabled = true;
         StartCoroutine(StartTimer(5));
+        car.isKinematic = true;
+        controller.enabled = false;
     }
 
     // Update is called once per frame
@@ -47,6 +51,8 @@ public class TrackManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             timer--;
         }
+        car.isKinematic = false;
+        controller.enabled = true;
         centerText.text = "START!";
         hasStarted = true;
         yield return new WaitForSeconds(1);
