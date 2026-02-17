@@ -40,7 +40,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Q))
+        if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
             frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
             frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
@@ -84,7 +84,7 @@ public class CarController : MonoBehaviour
     {
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0 && !Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.D) && Input.GetAxisRaw("Vertical") == 0 && !Input.GetKey(KeyCode.A))
         {
             currentBrakeForce = brakeForce;
         }
@@ -101,9 +101,9 @@ public class CarController : MonoBehaviour
             gearShiftUI.text = "GEAR: " + gear;
         }
 
-        if (Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0)
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && Input.GetAxisRaw("Vertical") == 0)
         {
-            if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
+            if (Input.GetKeyDown(KeyCode.U) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
             {
                 gear += 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
@@ -111,7 +111,7 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: " + gear;
             }
 
-            if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
+            if (Input.GetKeyDown(KeyCode.U) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
                 gear += 1;
                 acceleration *= -1;
                 gearShiftUI.text = "GEAR: " + gear;
