@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     private Rigidbody rb;
 
     [SerializeField] private TextMeshProUGUI speedometer;
+    [SerializeField] private Transform speedometerNeedle;
     [SerializeField] private TextMeshProUGUI gearShiftUI;
 
     [SerializeField] private float acceleration = 500;
@@ -133,6 +134,7 @@ public class CarController : MonoBehaviour
         }
 
         speedometer.text = "SPEED: " + Math.Round(rb.linearVelocity.magnitude, 2);
+        speedometerNeedle.localRotation = Quaternion.Euler(0, 0, 75 - rb.linearVelocity.magnitude * 5);
 
         if (Input.GetKey(KeyCode.R))
         {
