@@ -14,7 +14,7 @@ public class CarSoundController : MonoBehaviour
     [SerializeField] private AudioSource speed3;
     [SerializeField] private AudioSource accelerate3;
     
-    private RigidBody rigidBody = this.getComponent(RigidBody);
+    //private RigidBody rigidBody = this.getComponent(RigidBody);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
