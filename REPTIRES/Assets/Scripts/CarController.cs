@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -60,7 +61,9 @@ public class CarController : MonoBehaviour
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
         frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
 
-        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, currentMaxGearSpeed);
+        if (rb.linearVelocity.y > -0.1) {
+            rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, currentMaxGearSpeed);
+        }
 
         if (rb.linearVelocity.magnitude >= currentMaxGearSpeed)
         {

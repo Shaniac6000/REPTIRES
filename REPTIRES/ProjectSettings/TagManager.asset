@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TrackManager
   - Goal
+  - Slowing
   layers:
   - Default
   - TransparentFX
