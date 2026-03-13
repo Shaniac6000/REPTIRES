@@ -29,6 +29,7 @@ public class CarController : MonoBehaviour
     private float wheelRotation = 0;
     private float currentMaxGearSpeed = 10;
     private float currentMinGearSpeed = 0;
+    public bool slowed = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -88,6 +89,15 @@ public class CarController : MonoBehaviour
     {
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
 
+        if (slowed)
+        {
+            currentMaxGearSpeed = Mathf.Lerp(currentMaxGearSpeed, baseGearSpeed * 1.5f, Time.deltaTime / 1.5f);
+        }
+        else
+        {
+            currentMaxGearSpeed = gear * baseGearSpeed;
+        }
+
         if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0 && !Input.GetKey(KeyCode.Q))
         {
             currentBrakeForce = brakeForce;
@@ -100,12 +110,15 @@ public class CarController : MonoBehaviour
         if (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)
         {
             gear -= 1;
-            currentMaxGearSpeed = gear * baseGearSpeed;
+            if (!slowed)
+            {
+                currentMaxGearSpeed = gear * baseGearSpeed;
+            }
             currentMinGearSpeed = (gear - 1) * baseGearSpeed;
             gearShiftUI.text = "GEAR: " + gear;
         }
 
-        if (Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0)
+        if (Input.GetKey(KeyCode.Q) && !Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0 && !slowed)
         {
             if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
             {
@@ -134,6 +147,10 @@ public class CarController : MonoBehaviour
                 acceleration *= -1;
                 gearShiftUI.text = "GEAR: R";
             }
+        }
+        else if (slowed)
+        {
+            //play sound effect or something
         }
 
         speedometer.text = "SPEED: " + Math.Round(rb.linearVelocity.magnitude, 2);
