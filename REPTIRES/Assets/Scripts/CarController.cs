@@ -62,7 +62,7 @@ public class CarController : MonoBehaviour
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
         frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
 
-        if (rb.linearVelocity.y > -0.1) {
+        if (!(rb.linearVelocity.y < -1f && Math.Abs(rb.linearVelocity.y) >= rb.linearVelocity.magnitude / 1.5f)) {
             rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, currentMaxGearSpeed);
         }
 
@@ -93,7 +93,7 @@ public class CarController : MonoBehaviour
         {
             currentMaxGearSpeed = Mathf.Lerp(currentMaxGearSpeed, baseGearSpeed * 1.5f, Time.deltaTime / 1.5f);
         }
-        else
+        else if (gear != 0)
         {
             currentMaxGearSpeed = gear * baseGearSpeed;
         }
@@ -161,13 +161,6 @@ public class CarController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             TrackManager.hasEnded = false;
             TrackManager.hasStarted = false;
-        }
-
-        //TESTING PURPOSES ONLY, REMOVE AFTER ACTUALLY MAKING LEVELS
-        if (Input.GetKey(KeyCode.P))
-        {
-            LevelManagement.SetHighest(SceneManager.GetActiveScene().buildIndex);
-            SceneManager.LoadScene(0);
         }
     }
 }

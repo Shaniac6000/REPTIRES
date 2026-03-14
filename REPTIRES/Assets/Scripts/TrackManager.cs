@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TrackManager : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class TrackManager : MonoBehaviour
         {
             centerText.text = "end!";
             centerText.enabled = true;
+            StartCoroutine(EndLevel());
         }
     }
 
@@ -62,5 +64,13 @@ public class TrackManager : MonoBehaviour
     public static void EndTrack()
     {
         hasEnded = true;
+    }
+
+    private IEnumerator EndLevel()
+    {
+        yield return new WaitForSeconds(5);
+        hasEnded = false;
+        LevelManagement.SetHighest(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
