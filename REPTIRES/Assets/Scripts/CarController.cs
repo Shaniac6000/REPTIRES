@@ -24,6 +24,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float baseGearSpeed = 10;
     [SerializeField] private int gear = 1;
     [SerializeField] private float gearChangeOffset = 2.5f;
+     [SerializeField] private float rotateDegrees = 45;
     private float currentAcceleration = 0;
     private float currentBrakeForce = 0;
     private float wheelRotation = 0;
@@ -54,14 +55,6 @@ public class CarController : MonoBehaviour
         backRightWheel.brakeTorque = currentBrakeForce;
         backLeftWheel.brakeTorque = currentBrakeForce;
 
-        wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * 30;
-        wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
-        steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
-        frontLeftWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
-        frontRightWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
-        frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
-        frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
-
         if (!(rb.linearVelocity.y < -1f && Math.Abs(rb.linearVelocity.y) >= rb.linearVelocity.magnitude / 1.5f)) {
             rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, currentMaxGearSpeed);
         }
@@ -88,6 +81,14 @@ public class CarController : MonoBehaviour
     void Update()
     {
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
+
+        wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
+        wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
+        steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
+        frontLeftWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
+        frontRightWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
+        frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
+        frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
 
         if (slowed)
         {
