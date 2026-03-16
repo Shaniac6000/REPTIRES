@@ -84,7 +84,7 @@ public class CarController : MonoBehaviour
 
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
-        steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
+        //steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
         frontLeftWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
