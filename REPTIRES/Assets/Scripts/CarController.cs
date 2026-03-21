@@ -14,9 +14,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider backRightWheel;
     private Rigidbody rb;
 
-    [SerializeField] private TextMeshProUGUI speedometer;
     [SerializeField] private Transform speedometerNeedle;
     [SerializeField] private TextMeshProUGUI gearShiftUI;
+    [SerializeField] private Animator gator;
 
     [SerializeField] private float acceleration = 500;
 
@@ -85,6 +85,7 @@ public class CarController : MonoBehaviour
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
         steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3 + 90, 90, 90);
+        gator.SetFloat("SteerAngle", -wheelRotation * 3 + 90);
         frontLeftWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
@@ -153,7 +154,6 @@ public class CarController : MonoBehaviour
             //play sound effect
         }
 
-        speedometer.text = "SPEED: " + Math.Round(rb.linearVelocity.magnitude, 2);
         speedometerNeedle.localRotation = Quaternion.Euler(0, 0, 75 - rb.linearVelocity.magnitude * 5);
 
         if (Input.GetKey(KeyCode.R) && !TrackManager.hasEnded)
