@@ -84,7 +84,7 @@ public class CarController : MonoBehaviour
 
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
-        //steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3, 90, 90);
+        steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3 + 90, 90, 90);
         frontLeftWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
@@ -149,15 +149,14 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: R";
             }
         }
-        else if (slowed)
-        {
-            //play sound effect or something
+        else if (slowed && Input.GetKey(KeyCode.Q) && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.K))) {
+            //play sound effect
         }
 
         speedometer.text = "SPEED: " + Math.Round(rb.linearVelocity.magnitude, 2);
         speedometerNeedle.localRotation = Quaternion.Euler(0, 0, 75 - rb.linearVelocity.magnitude * 5);
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && !TrackManager.hasEnded)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             TrackManager.hasEnded = false;
