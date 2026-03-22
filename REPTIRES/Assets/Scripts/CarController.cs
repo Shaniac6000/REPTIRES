@@ -17,7 +17,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform speedometerNeedle;
     [SerializeField] private TextMeshProUGUI gearShiftUI;
     [SerializeField] private Animator gator;
-
+    private Transform gatorTransform;
     [SerializeField] private float acceleration = 500;
 
     [SerializeField] private float brakeForce = 300;
@@ -30,6 +30,7 @@ public class CarController : MonoBehaviour
     private float wheelRotation = 0;
     private float currentMaxGearSpeed = 10;
     private float currentMinGearSpeed = 0;
+    private float steeringWheelRotation = 90;
     public bool slowed = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +40,7 @@ public class CarController : MonoBehaviour
         frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90;
         backRightWheel.steerAngle = 90;
         backLeftWheel.steerAngle = 90;
+        gatorTransform = gator.gameObject.transform;
     }
 
     // Update is called once per frame
@@ -80,16 +82,40 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        
         currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
 
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
-        steeringWheel.localRotation = Quaternion.Euler(-wheelRotation * 3 + 90, 90, 90);
-        gator.SetFloat("SteerAngle", -wheelRotation * 3 + 90);
+        steeringWheelRotation = -wheelRotation * 3 + 90;
         frontLeftWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.transform.parent.localRotation = Quaternion.Euler(0, -wheelRotation, 0);
         frontRightWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
         frontLeftWheel.GetComponent<WheelCollider>().steerAngle = 90 -wheelRotation;
+
+        steeringWheel.localRotation = Quaternion.Euler(steeringWheelRotation, 90, 90);
+        gator.SetFloat("SteerAngle", steeringWheelRotation);
+        if (steeringWheelRotation < -18)
+        {
+            gatorTransform.localPosition = new Vector3(gatorTransform.localPosition.x, 2.535f, gatorTransform.localPosition.z);
+        }
+        else if (steeringWheelRotation < 9)
+        {
+            gatorTransform.localPosition = new Vector3(0.691f, 2.683299f, gatorTransform.localPosition.z);
+        }
+        else if (steeringWheelRotation > 171)
+        {
+            gatorTransform.localPosition = new Vector3(1.21f, gatorTransform.localPosition.y, gatorTransform.localPosition.z);
+        }
+        else if (steeringWheelRotation > 144)
+        {
+            gatorTransform.localPosition = new Vector3(1.113f, gatorTransform.localPosition.y, gatorTransform.localPosition.z);
+        }
+        else
+        {
+            gatorTransform.localPosition = new Vector3(0.8250504f, gatorTransform.localPosition.y, gatorTransform.localPosition.z);
+        }
+        
 
         if (slowed)
         {
