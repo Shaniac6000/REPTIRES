@@ -108,12 +108,188 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 29
+        width: 53
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e818cd988a7f6544db5889d995cbf1f7
+      internalID: 1280818086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_1
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 29
+        width: 60
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32d6bda0148b91f4c95a4270e852354d
+      internalID: -1279412444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_2
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 29
+        width: 60
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09e691502f26e2940928e933e29a32a5
+      internalID: -2025885044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_3
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 28
+        width: 77
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6e2b71bb3905d74bbc0e8dde685ed1a
+      internalID: -754026552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_4
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 22
+        width: 71
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42448ab03297916448b4f6f283f8c80f
+      internalID: -688629509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_5
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 16
+        width: 60
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d178ae2bae7a86645aaf89a0841f3ab6
+      internalID: 1001689570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_6
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 16
+        width: 62
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2d741006e41e0a46b0a8aa562654514
+      internalID: 1902359543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_B2G-1_v03_7
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 16
+        width: 61
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0cba56a0055f6144a7a68e44c221f94
+      internalID: 816010297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3772cab6329a4c444aacf88523e87043
     internalID: 0
     vertices: []
     indices: 
@@ -121,8 +297,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      sprite_turtle_B2G-1_v03_0: 1280818086
+      sprite_turtle_B2G-1_v03_1: -1279412444
+      sprite_turtle_B2G-1_v03_2: -2025885044
+      sprite_turtle_B2G-1_v03_3: -754026552
+      sprite_turtle_B2G-1_v03_4: -688629509
+      sprite_turtle_B2G-1_v03_5: 1001689570
+      sprite_turtle_B2G-1_v03_6: 1902359543
+      sprite_turtle_B2G-1_v03_7: 816010297
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

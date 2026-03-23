@@ -108,12 +108,210 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 16
+        width: 61
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72e517bb1a37fac40825209ea248bb65
+      internalID: -948297920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_1
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 16
+        width: 61
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e6d224ddd1ea74cbd32c4833b2daba
+      internalID: -710913725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_2
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 16
+        width: 62
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca2086e937fdfb4098164d6c8c2d369
+      internalID: -64015877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_3
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 16
+        width: 60
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c461ef97a11036a45b05bc81801d7136
+      internalID: 403954679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_4
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 22
+        width: 69
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 815cf8c7ff4a27143960a9658f697791
+      internalID: 559948432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_5
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 28
+        width: 66
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3b3fa6869876ba4097477a9fc8a80f4
+      internalID: 399600974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_6
+      rect:
+        serializedVersion: 2
+        x: 805
+        y: 29
+        width: 57
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c94d38c18de4fb44a3b3c2e5f9cef66
+      internalID: 1015236260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_7
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 29
+        width: 56
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 016753736434aea488545404b8d8f3b0
+      internalID: -1608883307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_G2B_v03_8
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 29
+        width: 53
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a5b4d4d73fd7624692fbffbafbfd976
+      internalID: 1415373479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a27e3ccb0dbb16a4dbddbfa6dc01a0b6
     internalID: 0
     vertices: []
     indices: 
@@ -121,8 +319,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      sprite_turtle_G2B_v03_0: -948297920
+      sprite_turtle_G2B_v03_1: -710913725
+      sprite_turtle_G2B_v03_2: -64015877
+      sprite_turtle_G2B_v03_3: 403954679
+      sprite_turtle_G2B_v03_4: 559948432
+      sprite_turtle_G2B_v03_5: 399600974
+      sprite_turtle_G2B_v03_6: 1015236260
+      sprite_turtle_G2B_v03_7: -1608883307
+      sprite_turtle_G2B_v03_8: 1415373479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

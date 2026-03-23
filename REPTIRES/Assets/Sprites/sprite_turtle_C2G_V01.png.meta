@@ -108,12 +108,232 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 39
+        width: 63
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4bc57b9b211fe54a91858627dfa8d32
+      internalID: 275387927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 41
+        width: 63
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c94e5e0b70a1b14f83ccecb6bbf645f
+      internalID: 2026080622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_2
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 36
+        width: 54
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0e9f32447ecc94fa7ae9e350ec49b7
+      internalID: -784667066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_3
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 30
+        width: 49
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 145a5a3a4c3922e4db3251709af80193
+      internalID: -232712191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_4
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 27
+        width: 59
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c93fd74c64a79f4ca8c1f3e3b6af255
+      internalID: 1119933165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_5
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 22
+        width: 66
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd1c6eda15607af4a9f3d57712c9a6ee
+      internalID: 612275723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_6
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 16
+        width: 69
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5450e5d8a6844974c9041a421a797262
+      internalID: -2118565642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_7
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 16
+        width: 60
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be3d5663df95bc4e9ff93dbed957166
+      internalID: -908975242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_8
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 16
+        width: 62
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9fc7979287a24d42bdabd8934c719dd
+      internalID: 608825239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_turtle_C2G_V01_9
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 16
+        width: 61
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb2b1a4a5a196cb409f2a7f880589fb8
+      internalID: -372039991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e5aae343a76665a4bbd1cde80ca838f3
     internalID: 0
     vertices: []
     indices: 
@@ -121,8 +341,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      sprite_turtle_C2G_V01_0: 275387927
+      sprite_turtle_C2G_V01_1: 2026080622
+      sprite_turtle_C2G_V01_2: -784667066
+      sprite_turtle_C2G_V01_3: -232712191
+      sprite_turtle_C2G_V01_4: 1119933165
+      sprite_turtle_C2G_V01_5: 612275723
+      sprite_turtle_C2G_V01_6: -2118565642
+      sprite_turtle_C2G_V01_7: -908975242
+      sprite_turtle_C2G_V01_8: 608825239
+      sprite_turtle_C2G_V01_9: -372039991
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
