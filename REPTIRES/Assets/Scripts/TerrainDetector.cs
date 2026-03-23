@@ -3,9 +3,11 @@ using UnityEngine;
 public class TerrainDetector : MonoBehaviour
 {
     private CarController player;
+    private BoxCollider bc;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<CarController>();
+        bc = GetComponent<BoxCollider>();
     }
 
     void OnTriggerEnter(Collider other)

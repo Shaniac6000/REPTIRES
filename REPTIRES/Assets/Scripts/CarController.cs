@@ -12,25 +12,25 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private WheelCollider backLeftWheel;
     [SerializeField] private WheelCollider backRightWheel;
+    [SerializeField] private BoxCollider groundCollision;
     private Rigidbody rb;
-
     [SerializeField] private Transform speedometerNeedle;
     [SerializeField] private TextMeshProUGUI gearShiftUI;
     [SerializeField] private Animator gator;
     private Transform gatorTransform;
     [SerializeField] private float acceleration = 500;
-
     [SerializeField] private float brakeForce = 300;
     [SerializeField] private float baseGearSpeed = 10;
     [SerializeField] private int gear = 1;
     [SerializeField] private float gearChangeOffset = 2.5f;
-     [SerializeField] private float rotateDegrees = 45;
+    [SerializeField] private float rotateDegrees = 45;
     private float currentAcceleration = 0;
     private float currentBrakeForce = 0;
     private float wheelRotation = 0;
     private float currentMaxGearSpeed = 10;
     private float currentMinGearSpeed = 0;
     private float steeringWheelRotation = 90;
+    private float forceMult = 1300000;
     public bool slowed = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -187,6 +187,25 @@ public class CarController : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             TrackManager.hasEnded = false;
             TrackManager.hasStarted = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && rb.linearVelocity.magnitude < 1)
+        {
+            if (transform.up.y <= -.9f)
+            {
+                rb.AddTorque(transform.right * -forceMult);
+            }
+            else if (transform.up.y <= .1f)
+            {
+                if (transform.forward.y >= .9f)
+                {
+                    rb.AddTorque(transform.right * forceMult / 2);
+                }
+                else if (transform.forward.y <= -.9f)
+                {
+                    rb.AddTorque(transform.right * -forceMult / 2);
+                }
+            }
         }
     }
 }
