@@ -12,7 +12,6 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private WheelCollider backLeftWheel;
     [SerializeField] private WheelCollider backRightWheel;
-    [SerializeField] private BoxCollider groundCollision;
     private Rigidbody rb;
     [SerializeField] private Transform speedometerNeedle;
     [SerializeField] private TextMeshProUGUI gearShiftUI;
