@@ -17,6 +17,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gearShiftUI;
     [SerializeField] private Animator gator;
     private Transform gatorTransform;
+    [SerializeField] private Animator turtle;
+    private Transform turtleTransform;
+    private Vector3 turtleGasPosition;
     [SerializeField] private float acceleration = 500;
     [SerializeField] private float brakeForce = 300;
     [SerializeField] private float baseGearSpeed = 10;
@@ -31,6 +34,7 @@ public class CarController : MonoBehaviour
     private float steeringWheelRotation = 90;
     private float forceMult = 1300000;
     public bool slowed = false;
+    private bool braking = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -48,7 +52,7 @@ public class CarController : MonoBehaviour
         if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Q))
         {
             frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
-            frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
+            frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;        
         }
 
         frontRightWheel.GetComponent<WheelCollider>().brakeTorque = currentBrakeForce;
@@ -81,8 +85,12 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        if (!braking)
+        {
+            currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
+        }
         
-        currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
+        turtle.SetBool("Gas", currentAcceleration > 0);
 
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
@@ -125,13 +133,17 @@ public class CarController : MonoBehaviour
             currentMaxGearSpeed = gear * baseGearSpeed;
         }
 
-        if (Input.GetKey(KeyCode.Space) && Input.GetAxisRaw("Vertical") == 0 && !Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Space) && currentAcceleration == 0 && !Input.GetKey(KeyCode.Q))
         {
             currentBrakeForce = brakeForce;
+            turtle.SetBool("Brake", true);
+            braking = true;
         }
         else
         {
             currentBrakeForce = 0;
+            turtle.SetBool("Brake", false);
+            braking = false;
         }
 
         if (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)
