@@ -55,7 +55,7 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Q))
+        if (!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A))
         {
             frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
             frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;        
@@ -142,7 +142,7 @@ public class CarController : MonoBehaviour
             currentMaxGearSpeed = gear * baseGearSpeed;
         }
 
-        if (Input.GetKey(KeyCode.Space) && currentAcceleration == 0 && !clutch)
+        if (Input.GetKey(KeyCode.S) && currentAcceleration == 0 && !clutch)
         {
             currentBrakeForce = brakeForce;
             turtle.SetBool("Brake", true);
@@ -167,7 +167,7 @@ public class CarController : MonoBehaviour
             gearShiftUI.text = "GEAR: " + gear;
         }
 
-        if (Input.GetKey(KeyCode.Q) && !braking && currentAcceleration == 0 && !slowed)
+        if (Input.GetKey(KeyCode.A) && !braking && currentAcceleration == 0 && !slowed)
         {
             turtleMove = true;
             clutch = true;
@@ -180,13 +180,13 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: " + gear;
             }
 
-            if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
+            if (Input.GetKeyDown(KeyCode.U) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
                 gear += 1;
                 acceleration *= -1;
                 gearShiftUI.text = "GEAR: " + gear;
             }
 
-            if (Input.GetKeyDown(KeyCode.M) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset && gear > 1)
+            if (Input.GetKeyDown(KeyCode.U) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset && gear > 1)
             {
                 gear -= 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
@@ -200,7 +200,7 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: R";
             }
         }
-        else if (slowed && Input.GetKey(KeyCode.Q) && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.K))) {
+        else if (slowed && Input.GetKey(KeyCode.A) && (Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.M))) {
             turtleMove = true;
             clutch = true;
             turtle.SetBool("Clutch", true);
