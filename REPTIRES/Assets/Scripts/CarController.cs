@@ -35,6 +35,7 @@ public class CarController : MonoBehaviour
     private float steeringWheelRotation = 90;
     private float forceMult = 1300000;
     public bool slowed = false;
+    private bool gas;
     private bool braking = false;
     private bool clutch = false;
     private bool turtleMove = false;
@@ -55,11 +56,8 @@ public class CarController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!Input.GetKey(KeyCode.Space) && !Input.GetKey(KeyCode.Q))
-        {
-            frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
-            frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;        
-        }
+        frontRightWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;
+        frontLeftWheel.GetComponent<WheelCollider>().motorTorque = currentAcceleration;        
 
         frontRightWheel.GetComponent<WheelCollider>().brakeTorque = currentBrakeForce;
         frontLeftWheel.GetComponent<WheelCollider>().brakeTorque = currentBrakeForce;
@@ -78,7 +76,7 @@ public class CarController : MonoBehaviour
             backLeftWheel.brakeTorque = currentBrakeForce;
         }
 
-        if (rb.linearVelocity.magnitude <= .01 && Input.GetAxisRaw("Vertical") == 0)
+        if (rb.linearVelocity.magnitude <= .01 && !(gas && Input.GetAxisRaw("Vertical") > 0))
         {
             frontRightWheel.GetComponent<WheelCollider>().motorTorque = 0;
             frontLeftWheel.GetComponent<WheelCollider>().motorTorque = 0;
@@ -91,15 +89,27 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        if (!braking && !clutch)
+        if (Input.GetKeyDown(KeyCode.S) && !braking && !clutch)
         {
-            currentAcceleration = acceleration * Input.GetAxisRaw("Vertical");
-            if (currentAcceleration > 0)
-            {
-                turtleMove = false;
-            }
+            turtle.SetBool("Gas", true);
+            turtle.SetBool("Brake", false);
+            turtle.SetBool("Clutch", false);
+            turtleMove = false;
         }
-        turtle.SetBool("Gas", currentAcceleration > 0);
+        else if (Input.GetKeyDown(KeyCode.Space) && !gas && !clutch)
+        {
+            turtle.SetBool("Gas", false);
+            turtle.SetBool("Brake", true);
+            turtle.SetBool("Clutch", false);
+            turtleMove = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Q) && !gas && !braking)
+        {
+            turtle.SetBool("Gas", false);
+            turtle.SetBool("Brake", false);
+            turtle.SetBool("Clutch", true);
+            turtleMove = true;
+        }
 
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
         wheelRotation = Mathf.Clamp(wheelRotation, -45, 45);
@@ -142,20 +152,6 @@ public class CarController : MonoBehaviour
             currentMaxGearSpeed = gear * baseGearSpeed;
         }
 
-        if (Input.GetKey(KeyCode.Space) && currentAcceleration == 0 && !clutch)
-        {
-            currentBrakeForce = brakeForce;
-            turtle.SetBool("Brake", true);
-            braking = true;
-            turtleMove = false;
-        }
-        else
-        {
-            currentBrakeForce = 0;
-            turtle.SetBool("Brake", false);
-            braking = false;
-        }
-
         if (rb.linearVelocity.magnitude <= currentMinGearSpeed - gearChangeOffset)
         {
             gear -= 1;
@@ -167,11 +163,37 @@ public class CarController : MonoBehaviour
             gearShiftUI.text = "GEAR: " + gear;
         }
 
-        if (Input.GetKey(KeyCode.Q) && !braking && currentAcceleration == 0 && !slowed)
+        if (Input.GetAxisRaw("Vertical") > 0)
         {
-            turtleMove = true;
-            clutch = true;
-            turtle.SetBool("Clutch", true);
+            if (turtle.GetBool("Gas"))
+            {
+                currentAcceleration = Input.GetAxisRaw("Vertical") * acceleration;
+                gas = true;
+            }
+            else if (turtle.GetBool("Brake"))
+            {
+                currentBrakeForce = brakeForce;
+                braking = true;
+            }
+
+            else if (turtle.GetBool("Clutch"))
+            {
+                clutch = true;
+            }
+            turtle.SetBool("Down", true);
+        }
+        else
+        {
+            currentAcceleration = 0;
+            currentBrakeForce = 0;
+            gas = false;
+            braking = false;
+            clutch = false;
+            turtle.SetBool("Down", false);
+        }
+
+        if (clutch && !braking && !gas && !slowed)
+        {
             if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
             {
                 gear += 1;
@@ -200,16 +222,8 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: R";
             }
         }
-        else if (slowed && Input.GetKey(KeyCode.Q) && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.K))) {
-            turtleMove = true;
-            clutch = true;
-            turtle.SetBool("Clutch", true);
+        else if (slowed && clutch && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.K))) {
             //play sound effect
-        }
-        else
-        {
-            clutch = false;
-            turtle.SetBool("Clutch", false);
         }
 
         if (turtleMove)
@@ -245,6 +259,10 @@ public class CarController : MonoBehaviour
                 else if (transform.forward.y <= -.9f)
                 {
                     rb.AddTorque(transform.right * -forceMult / 2);
+                }
+                else
+                {
+                    rb.AddTorque(transform.right * -forceMult);
                 }
             }
         }
