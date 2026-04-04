@@ -246,17 +246,17 @@ public class CarController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && rb.linearVelocity.magnitude < 1)
         {
-            if (transform.up.y <= -.9f)
+            if (transform.up.y <= .1f)
             {
                 rb.AddTorque(transform.right * -forceMult);
             }
-            else if (transform.up.y <= .1f)
+            else if (transform.up.y <= .8f)
             {
-                if (transform.forward.y >= .9f)
+                if (transform.forward.y >= .25f)
                 {
                     rb.AddTorque(transform.right * forceMult / 2);
                 }
-                else if (transform.forward.y <= -.9f)
+                else if (transform.forward.y <= -.25f)
                 {
                     rb.AddTorque(transform.right * -forceMult / 2);
                 }
