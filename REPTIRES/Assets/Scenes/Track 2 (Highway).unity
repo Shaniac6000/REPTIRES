@@ -60684,6 +60684,7 @@ MonoBehaviour:
   goldTime: 0
   silverTime: 0
   bronzeTime: 0
+  caughtTime: 300
 --- !u!1 &3091189745822516181
 GameObject:
   m_ObjectHideFlags: 0

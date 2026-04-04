@@ -244,19 +244,19 @@ public class CarController : MonoBehaviour
             TrackManager.hasStarted = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && rb.linearVelocity.magnitude < 1)
+        if (Input.GetKeyDown(KeyCode.F) && rb.linearVelocity.magnitude < .5f)
         {
             if (transform.up.y <= -.9f)
             {
                 rb.AddTorque(transform.right * -forceMult);
             }
-            else if (transform.up.y <= .1f)
+            else if (transform.up.y <= .8f)
             {
-                if (transform.forward.y >= .9f)
+                if (transform.forward.y >= .25f)
                 {
                     rb.AddTorque(transform.right * forceMult / 2);
                 }
-                else if (transform.forward.y <= -.9f)
+                else if (transform.forward.y <= -.25f)
                 {
                     rb.AddTorque(transform.right * -forceMult / 2);
                 }
