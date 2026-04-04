@@ -22,14 +22,12 @@ public class PauseManager : MonoBehaviour
     private void Pause()
     {
         Time.timeScale = 0;
-        AudioListener.pause = true;
         pauseMenu.SetActive(true);
     }
 
     public void Unpause()
     {
         Time.timeScale = 1;
-        AudioListener.pause = false;
         pauseMenu.SetActive(false);
     }
 

@@ -15,7 +15,6 @@ public class TrackManager : MonoBehaviour
     public float goldTime;
     public float silverTime;
     public float bronzeTime;
-    public float caughtTime;
 
     static public bool hasStarted = false;
     static public bool hasEnded = false;
@@ -52,15 +51,9 @@ public class TrackManager : MonoBehaviour
             {
                 timerText.color = Color.sandyBrown;
             }
-            else if (currentTime <= caughtTime)
+            else
             {
                 timerText.color = Color.white;
-            }
-            else if (currentTime > caughtTime)
-            {
-                car.isKinematic = true;
-                centerText.text = "YOU WERE CAUGHT :( \n Press R to restart";
-                centerText.enabled = true;
             }
         }
 
