@@ -3,6 +3,7 @@ using UnityEngine;
 public class TowcarDrive : MonoBehaviour
 {
     [SerializeField] GameObject PlayerCar;
+    [SerializeField] float maxTravelDistance = 590f; // Maximum distance to tow before stopping
 
     private Rigidbody playerRb;
     private Rigidbody myRb;

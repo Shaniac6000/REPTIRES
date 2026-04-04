@@ -3,19 +3,22 @@ using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TrackManager : MonoBehaviour
 {
-    public Rigidbody car;
-    public CarController controller;
-    public TextMeshProUGUI timerText;
-    public TextMeshProUGUI centerText;
-    public float currentTime = 0f;
+    [SerializeField] public Rigidbody car;
+    [SerializeField] public CarController controller;
+    [SerializeField] public TextMeshProUGUI timerText;
+    [SerializeField] public TextMeshProUGUI centerText;
 
-    public float goldTime;
-    public float silverTime;
-    public float bronzeTime;
-    public float caughtTime = 300;
+    [SerializeField] public Slider bigTimer;
+    [SerializeField] public float currentTime = 0f;
+
+    [SerializeField] public float goldTime;
+    [SerializeField] public float silverTime;
+    [SerializeField] public float bronzeTime;
+    [SerializeField] public float caughtTime = 300;
 
     static public bool hasStarted = false;
     static public bool hasEnded = false;
@@ -62,6 +65,8 @@ public class TrackManager : MonoBehaviour
                 centerText.text = "YOU WERE CAUGHT :( \n Press R to restart";
                 centerText.enabled = true;
             }
+
+            bigTimer.value = caughtTime / currentTime;
         }
 
         else if (hasEnded)
