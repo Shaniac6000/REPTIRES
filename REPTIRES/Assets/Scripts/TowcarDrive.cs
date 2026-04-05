@@ -7,6 +7,8 @@ public class TowcarDrive : MonoBehaviour
 
     private Rigidbody playerRb;
     private Rigidbody myRb;
+    private Vector3 startPosition;
+    private bool hasFinishedTowing;
     
     // Flag to track whether the velocity matching should happen
     private bool isTowing = false; 
