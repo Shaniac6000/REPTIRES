@@ -66,7 +66,7 @@ public class TrackManager : MonoBehaviour
                 centerText.enabled = true;
             }
 
-            bigTimer.value = caughtTime / currentTime;
+            bigTimer.value = caughtTime - currentTime;
         }
 
         else if (hasEnded)
