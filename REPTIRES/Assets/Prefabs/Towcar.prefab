@@ -1838,6 +1838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5762140890381824001}
+  - component: {fileID: 3689986893332872797}
   m_Layer: 0
   m_Name: Towcar
   m_TagString: Untagged
@@ -1862,6 +1863,27 @@ Transform:
   - {fileID: 8567825858820394935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3689986893332872797
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8726707070168249248}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.5335083, y: 4.152381, z: 29.342651}
+  m_Center: {x: -0.0022277832, y: 0.02601242, z: -9.028931}
 --- !u!1 &8914204129863105957
 GameObject:
   m_ObjectHideFlags: 0
