@@ -89,21 +89,21 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) && !braking && !clutch)
+        if (Input.GetKeyDown(KeyCode.D) && !braking && !clutch)
         {
             turtle.SetBool("Gas", true);
             turtle.SetBool("Brake", false);
             turtle.SetBool("Clutch", false);
             turtleMove = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && !gas && !clutch)
+        else if (Input.GetKeyDown(KeyCode.S) && !gas && !clutch)
         {
             turtle.SetBool("Gas", false);
             turtle.SetBool("Brake", true);
             turtle.SetBool("Clutch", false);
             turtleMove = false;
         }
-        else if (Input.GetKeyDown(KeyCode.Q) && !gas && !braking)
+        else if (Input.GetKeyDown(KeyCode.A) && !gas && !braking)
         {
             turtle.SetBool("Gas", false);
             turtle.SetBool("Brake", false);
@@ -194,7 +194,7 @@ public class CarController : MonoBehaviour
 
         if (clutch && !braking && !gas && !slowed)
         {
-            if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
+            if (Input.GetKeyDown(KeyCode.U) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
             {
                 gear += 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
@@ -202,7 +202,7 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: " + gear;
             }
 
-            if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
+            if (Input.GetKeyDown(KeyCode.U) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
                 gear += 1;
                 acceleration *= -1;
                 gearShiftUI.text = "GEAR: " + gear;
@@ -222,7 +222,7 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: R";
             }
         }
-        else if (slowed && clutch && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.K))) {
+        else if (slowed && clutch && (Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.K))) {
             //play sound effect
         }
 
