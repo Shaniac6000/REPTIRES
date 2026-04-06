@@ -18,6 +18,7 @@ public class PedestrianBehavior : MonoBehaviour
         target = pointA;
 
         scream = GetComponent<AudioSource>();
+        speed += Random.Range(-1.0f, 1.0f);
     }
 
     // Update is called once per frame
