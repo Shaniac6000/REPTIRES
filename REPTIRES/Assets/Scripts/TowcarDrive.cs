@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class TowcarDrive : MonoBehaviour
@@ -21,7 +22,7 @@ public class TowcarDrive : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("PlayerCar is not assigned in TowcarDrive script!");
+            UnityEngine.Debug.LogError("PlayerCar reference is not set in the inspector.");
         }
 
         myRb = GetComponent<Rigidbody>();
@@ -31,6 +32,7 @@ public class TowcarDrive : MonoBehaviour
     {
         // Calculate the distance traveled since towing started
         float distanceTraveled = Vector3.Distance(startPosition, transform.position);
+        UnityEngine.Debug.Log(isTowing);
 
         if (distanceTraveled >= maxTravelDistance)
         {
@@ -43,7 +45,8 @@ public class TowcarDrive : MonoBehaviour
             return; // Exit the function early this frame
         }
 
-        // If we haven't reached 600 units yet, keep copying the Z velocity
+        // If we are towing and haven't finished, match the player's Z velocity
+
         float targetZVelocity = playerRb.linearVelocity.z;
         myRb.linearVelocity = new Vector3(myRb.linearVelocity.x, myRb.linearVelocity.y, targetZVelocity);
     }
