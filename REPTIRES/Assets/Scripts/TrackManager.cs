@@ -15,9 +15,9 @@ public class TrackManager : MonoBehaviour
     [SerializeField] public Slider bigTimer;
     [SerializeField] public float currentTime = 0f;
 
-    [SerializeField] public float goldTime;
-    [SerializeField] public float silverTime;
-    [SerializeField] public float bronzeTime;
+    [SerializeField] public float goldTime = 120;
+    [SerializeField] public float silverTime = 150;
+    [SerializeField] public float bronzeTime = 180;
     [SerializeField] public float caughtTime = 300;
 
     static public bool hasStarted = false;

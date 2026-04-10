@@ -22881,6 +22881,17 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &643438367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3338889716914377504, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+  m_PrefabInstance: {fileID: 1833411977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!4 &652136825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 51894580399660931, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
@@ -26165,6 +26176,18 @@ PrefabInstance:
       propertyPath: turtle
       value: 
       objectReference: {fileID: 1833411981}
+    - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
+      propertyPath: gasPedal
+      value: 
+      objectReference: {fileID: 1637738955}
+    - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
+      propertyPath: brakePedal
+      value: 
+      objectReference: {fileID: 1637738953}
+    - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
+      propertyPath: clutchPedal
+      value: 
+      objectReference: {fileID: 1637738954}
     - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
       propertyPath: gearShiftUI
       value: 
@@ -46259,6 +46282,21 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!4 &1637738953 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1071837469865342602, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+  m_PrefabInstance: {fileID: 1833411977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1637738954 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4669970188155266954, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+  m_PrefabInstance: {fileID: 1833411977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1637738955 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 150717111969315049, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+  m_PrefabInstance: {fileID: 1833411977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1661268095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53953,6 +53991,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 933749474}
+    - target: {fileID: 2785167923721138328, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785167923721138328, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2785167923721138328, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3188400126610196075, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
       propertyPath: car
       value: 
@@ -54044,6 +54094,14 @@ PrefabInstance:
     - target: {fileID: 6710510516988703747, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
       propertyPath: m_Name
       value: Dithering & UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140158901425451726, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7140158901425451726, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7258520137804280220, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
       propertyPath: m_Mesh
@@ -61326,11 +61384,11 @@ MonoBehaviour:
   controller: {fileID: 844876348}
   timerText: {fileID: 1833411978}
   centerText: {fileID: 1833411979}
-  bigTimer: {fileID: 0}
+  bigTimer: {fileID: 643438367}
   currentTime: 0
-  goldTime: 0
-  silverTime: 0
-  bronzeTime: 0
+  goldTime: 120
+  silverTime: 150
+  bronzeTime: 180
   caughtTime: 300
 --- !u!1 &3091189745822516181
 GameObject:

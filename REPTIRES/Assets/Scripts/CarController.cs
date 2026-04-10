@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,12 @@ public class CarController : MonoBehaviour
     private Transform turtleTransform;
     private Vector3 turtleInitPosition;
     private Vector3 turtleClutchPosition;
+    [SerializeField] private Transform gasPedal;
+    [SerializeField] private Transform brakePedal;
+    [SerializeField] private Transform clutchPedal;
+    private Transform currentPedal;
+    private float initPedalY;
+    private float downPedalY;
     [SerializeField] private float acceleration = 500;
     [SerializeField] private float brakeForce = 300;
     [SerializeField] private float baseGearSpeed = 10;
@@ -51,6 +58,9 @@ public class CarController : MonoBehaviour
         turtleTransform = turtle.gameObject.transform;
         turtleInitPosition = turtleTransform.localPosition;
         turtleClutchPosition = new Vector3(-5.13999987f,4.01000023f,-6.69999981f);
+        currentPedal = gasPedal;
+        initPedalY = currentPedal.localPosition.y;
+        downPedalY = 2.46f;
     }
 
     // Update is called once per frame
@@ -95,6 +105,7 @@ public class CarController : MonoBehaviour
             turtle.SetBool("Brake", false);
             turtle.SetBool("Clutch", false);
             turtleMove = false;
+            currentPedal = gasPedal;
         }
         else if (Input.GetKeyDown(KeyCode.Space) && !gas && !clutch)
         {
@@ -102,6 +113,7 @@ public class CarController : MonoBehaviour
             turtle.SetBool("Brake", true);
             turtle.SetBool("Clutch", false);
             turtleMove = false;
+            currentPedal = brakePedal;
         }
         else if (Input.GetKeyDown(KeyCode.Q) && !gas && !braking)
         {
@@ -109,6 +121,7 @@ public class CarController : MonoBehaviour
             turtle.SetBool("Brake", false);
             turtle.SetBool("Clutch", true);
             turtleMove = true;
+            currentPedal = clutchPedal;
         }
 
         wheelRotation -= Input.GetAxisRaw("Horizontal") * Time.deltaTime * rotateDegrees;
@@ -181,6 +194,7 @@ public class CarController : MonoBehaviour
                 clutch = true;
             }
             turtle.SetBool("Down", true);
+            currentPedal.localPosition = new Vector3(currentPedal.localPosition.x, downPedalY, currentPedal.localPosition.z);
         }
         else
         {
@@ -190,6 +204,9 @@ public class CarController : MonoBehaviour
             braking = false;
             clutch = false;
             turtle.SetBool("Down", false);
+            gasPedal.localPosition = new Vector3(gasPedal.localPosition.x, initPedalY, gasPedal.localPosition.z);
+            brakePedal.localPosition = new Vector3(brakePedal.localPosition.x, initPedalY, brakePedal.localPosition.z);
+            clutchPedal.localPosition = new Vector3(clutchPedal.localPosition.x, initPedalY, clutchPedal.localPosition.z);
         }
 
         if (clutch && !braking && !gas && !slowed)
