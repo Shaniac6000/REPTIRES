@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gearShiftUI;
     [SerializeField] private Animator gator;
     private Transform gatorTransform;
+    private SpriteRenderer gatorSprite;
     [SerializeField] private Animator turtle;
     private Transform turtleTransform;
     private Vector3 turtleInitPosition;
@@ -46,6 +48,9 @@ public class CarController : MonoBehaviour
     private bool braking = false;
     private bool clutch = false;
     private bool turtleMove = false;
+    private float heat = 7.5f;
+    private float heatSpeed = .75f;
+    private float normalRotateDegrees;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -55,12 +60,14 @@ public class CarController : MonoBehaviour
         backRightWheel.steerAngle = 90;
         backLeftWheel.steerAngle = 90;
         gatorTransform = gator.gameObject.transform;
+        gatorSprite = gator.gameObject.GetComponent<SpriteRenderer>();
         turtleTransform = turtle.gameObject.transform;
         turtleInitPosition = turtleTransform.localPosition;
         turtleClutchPosition = new Vector3(-5.13999987f,4.01000023f,-6.69999981f);
         currentPedal = gasPedal;
         initPedalY = currentPedal.localPosition.y;
         downPedalY = 2.46f;
+        normalRotateDegrees = rotateDegrees;
     }
 
     // Update is called once per frame
@@ -182,6 +189,7 @@ public class CarController : MonoBehaviour
             {
                 currentAcceleration = Input.GetAxisRaw("Vertical") * acceleration;
                 gas = true;
+                heat += heatSpeed * Time.deltaTime;
             }
             else if (turtle.GetBool("Brake"))
             {
@@ -211,7 +219,7 @@ public class CarController : MonoBehaviour
 
         if (clutch && !braking && !gas && !slowed)
         {
-            if (Input.GetKeyDown(KeyCode.K) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
+            if (Input.GetKeyDown(KeyCode.U) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
             {
                 gear += 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
@@ -219,7 +227,7 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: " + gear;
             }
 
-            if (Input.GetKeyDown(KeyCode.K) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
+            if (Input.GetKeyDown(KeyCode.U) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
                 gear += 1;
                 acceleration *= -1;
                 gearShiftUI.text = "GEAR: " + gear;
@@ -239,7 +247,7 @@ public class CarController : MonoBehaviour
                 gearShiftUI.text = "GEAR: R";
             }
         }
-        else if (slowed && clutch && (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.K))) {
+        else if (slowed && clutch && (Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.M))) {
             //play sound effect
         }
 
@@ -254,7 +262,40 @@ public class CarController : MonoBehaviour
 
         speedometerNeedle.localRotation = Quaternion.Euler(0, 0, 75 - rb.linearVelocity.magnitude * 5);
 
-        if (Input.GetKey(KeyCode.R) && !TrackManager.hasEnded)
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            heat -= heatSpeed * 10f;
+        }
+
+        heat = Mathf.Clamp(heat, 0, 20);
+        
+        if (heat < 5 || heat > 15)
+        {
+            rotateDegrees = normalRotateDegrees / 3;
+        }
+        else
+        {
+            rotateDegrees = normalRotateDegrees;
+        }
+
+        if (heat < 7.5f)
+        {
+            float coldColor = heat / 7.5f;
+            coldColor = Mathf.Clamp(coldColor, .4f, 1);
+            gatorSprite.color = new Color(coldColor, coldColor, 1);  
+        }
+        else if (heat > 12.5f)
+        {
+            float hotColor = (20 - heat) / 7.5f;
+            hotColor = Mathf.Clamp(hotColor, .4f, 1);
+            gatorSprite.color = new Color(1, hotColor, hotColor);
+        }
+        else
+        {
+            gatorSprite.color = new Color(1, 1, 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && !TrackManager.hasEnded)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             TrackManager.hasEnded = false;
