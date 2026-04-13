@@ -54134,10 +54134,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1927409620559231681, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
 --- !u!114 &1833411978 stripped
 MonoBehaviour:
@@ -60054,6 +60051,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   camPoint: {fileID: 652136825}
+  carRB: {fileID: 844876349}
+  initialFOV: 70
+  FOVScaling: 1
 --- !u!1 &2020959122
 GameObject:
   m_ObjectHideFlags: 0
