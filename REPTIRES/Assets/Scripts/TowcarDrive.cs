@@ -26,6 +26,7 @@ public class TowcarDrive : MonoBehaviour
         }
 
         myRb = GetComponent<Rigidbody>();
+        startPosition = myRb.position;
     }
 
     void FixedUpdate()
@@ -48,7 +49,7 @@ public class TowcarDrive : MonoBehaviour
         // If we are towing and haven't finished, match the player's Z velocity
 
         float targetZVelocity = playerRb.linearVelocity.z;
-        myRb.linearVelocity = new Vector3(myRb.linearVelocity.x, myRb.linearVelocity.y, targetZVelocity);
+        myRb.linearVelocity = new Vector3(myRb.linearVelocity.x, myRb.linearVelocity.y, targetZVelocity - 2);
     }
 
     // This method is called automatically when another collider enters this object's trigger collider
