@@ -106,7 +106,7 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) && !braking && !clutch)
+        if (Input.GetKeyDown(KeyCode.D) && !braking && !clutch)
         {
             turtle.SetBool("Gas", true);
             turtle.SetBool("Brake", false);
@@ -114,7 +114,7 @@ public class CarController : MonoBehaviour
             turtleMove = false;
             currentPedal = gasPedal;
         }
-        else if (Input.GetKeyDown(KeyCode.Space) && !gas && !clutch)
+        else if (Input.GetKeyDown(KeyCode.S) && !gas && !clutch)
         {
             turtle.SetBool("Gas", false);
             turtle.SetBool("Brake", true);
@@ -122,7 +122,7 @@ public class CarController : MonoBehaviour
             turtleMove = false;
             currentPedal = brakePedal;
         }
-        else if (Input.GetKeyDown(KeyCode.Q) && !gas && !braking)
+        else if (Input.GetKeyDown(KeyCode.A) && !gas && !braking)
         {
             turtle.SetBool("Gas", false);
             turtle.SetBool("Brake", false);
