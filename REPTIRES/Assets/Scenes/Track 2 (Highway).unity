@@ -26181,6 +26181,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1637738955}
     - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
+      propertyPath: chameleon
+      value: 
+      objectReference: {fileID: 1629195316}
+    - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
       propertyPath: brakePedal
       value: 
       objectReference: {fileID: 1637738953}
@@ -26191,11 +26195,15 @@ PrefabInstance:
     - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
       propertyPath: gearShiftUI
       value: 
-      objectReference: {fileID: 1833411980}
+      objectReference: {fileID: 0}
     - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
       propertyPath: speedometer
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
+      propertyPath: gearShiftText
+      value: 
+      objectReference: {fileID: 1833411980}
     - target: {fileID: 7758614361347282701, guid: 5103717a637b29f45a059afd8ca8d3b7, type: 3}
       propertyPath: steeringWheel
       value: 
@@ -46282,6 +46290,11 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!95 &1629195316 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2640225277390174163, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+  m_PrefabInstance: {fileID: 1833411977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1637738953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1071837469865342602, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
@@ -53991,6 +54004,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 933749474}
+    - target: {fileID: 1013984978168100576, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_VersionIndex
+      value: 560
+      objectReference: {fileID: 0}
     - target: {fileID: 2785167923721138328, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -54107,10 +54124,18 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1738306162}
+    - target: {fileID: 7258520137804280220, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_VersionIndex
+      value: 653
+      objectReference: {fileID: 0}
     - target: {fileID: 7424069165028685027, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 973066899}
+    - target: {fileID: 7424069165028685027, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      propertyPath: m_VersionIndex
+      value: 619
+      objectReference: {fileID: 0}
     - target: {fileID: 7647388949904752736, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -54134,7 +54159,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4004497949958738698, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1928145166146153908, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5436375849106766361, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 1108778887983956335, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
 --- !u!114 &1833411978 stripped
 MonoBehaviour:
@@ -54160,15 +54197,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &1833411980 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 998145329268949138, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8069013254671616512, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}
   m_PrefabInstance: {fileID: 1833411977}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshPro
 --- !u!95 &1833411981 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3300661665403605299, guid: 59bbf58e8169c234cb2f42a6e4a3032d, type: 3}

@@ -16,12 +16,13 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelCollider backRightWheel;
     private Rigidbody rb;
     [SerializeField] private Transform speedometerNeedle;
-    [SerializeField] private TextMeshProUGUI gearShiftUI;
+    [SerializeField] private TextMeshPro gearShiftText;
     [SerializeField] private Animator gator;
     private Transform gatorTransform;
     private SpriteRenderer gatorSprite;
     [SerializeField] private Animator turtle;
     private Transform turtleTransform;
+    [SerializeField] private Animator chameleon;
     private Vector3 turtleInitPosition;
     private Vector3 turtleClutchPosition;
     [SerializeField] private Transform gasPedal;
@@ -180,7 +181,7 @@ public class CarController : MonoBehaviour
                 currentMaxGearSpeed = gear * baseGearSpeed;
             }
             currentMinGearSpeed = (gear - 1) * baseGearSpeed;
-            gearShiftUI.text = "GEAR: " + gear;
+            gearShiftText.text = "GEAR: " + gear;
         }
 
         if (Input.GetAxisRaw("Vertical") > 0)
@@ -220,36 +221,40 @@ public class CarController : MonoBehaviour
         if (clutch && !braking && !gas && !slowed)
         {
             if (Input.GetKeyDown(KeyCode.U) && rb.linearVelocity.magnitude >= currentMaxGearSpeed - gearChangeOffset && gear < 3 && gear > 0)
+            if (Input.GetKeyDown(KeyCode.U) && gear < 3 && gear > 0)
             {
                 gear += 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
                 currentMinGearSpeed = (gear - 1) * baseGearSpeed;
-                gearShiftUI.text = "GEAR: " + gear;
+                gearShiftText.text = "GEAR: " + gear;
             }
 
             if (Input.GetKeyDown(KeyCode.U) && gear == 0 && rb.linearVelocity.magnitude <= .01f) {
                 gear += 1;
                 acceleration *= -1;
-                gearShiftUI.text = "GEAR: " + gear;
+                gearShiftText.text = "GEAR: " + gear;
             }
 
             if (Input.GetKeyDown(KeyCode.M) && rb.linearVelocity.magnitude <= currentMinGearSpeed + gearChangeOffset && gear > 1)
             {
+                print("b");
                 gear -= 1;
                 currentMaxGearSpeed = gear * baseGearSpeed;
                 currentMinGearSpeed = (gear - 1) * baseGearSpeed;
-                gearShiftUI.text = "GEAR: " + gear;
+                gearShiftText.text = "GEAR: " + gear;
             }
 
             if (Input.GetKeyDown(KeyCode.M) && gear == 1 && rb.linearVelocity.magnitude <= .01f) {
                 gear -= 1;
                 acceleration *= -1;
-                gearShiftUI.text = "GEAR: R";
+                gearShiftText.text = "GEAR: R";
             }
         }
         else if (slowed && clutch && (Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.M))) {
             //play sound effect
         }
+        
+        chameleon.SetInteger("Gear", gear);
 
         if (turtleMove)
         {
