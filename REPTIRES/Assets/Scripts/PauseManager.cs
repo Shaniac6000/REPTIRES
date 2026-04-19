@@ -36,6 +36,7 @@ public class PauseManager : MonoBehaviour
     public void ReturnToMenu()
     {
         Time.timeScale = 1;
+        AudioListener.pause = false;
         SceneManager.LoadScene(0);
     }
 }

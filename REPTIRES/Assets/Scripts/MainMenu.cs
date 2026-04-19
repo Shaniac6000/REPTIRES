@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject titleScreen;
     [SerializeField] private GameObject levelSelect;
+    [SerializeField] private GameObject howToPlay;
 
     [SerializeField] private Button[] levels;
 
@@ -24,12 +25,21 @@ public class MainMenu : MonoBehaviour
     {
         titleScreen.SetActive(false);
         levelSelect.SetActive(true);
+        howToPlay.SetActive(false);
     }
 
     public void EnableTitle()
     {
         levelSelect.SetActive(false);
         titleScreen.SetActive(true);
+        howToPlay.SetActive(false);
+    }
+
+    public void EnableHowTo()
+    {
+        levelSelect.SetActive(false);
+        titleScreen.SetActive(false);
+        howToPlay.SetActive(true);
     }
 
     public void LoadLevel(int x)
