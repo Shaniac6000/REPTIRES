@@ -49,7 +49,7 @@ public class TowcarDrive : MonoBehaviour
         // If we are towing and haven't finished, match the player's Z velocity
 
         float targetZVelocity = playerRb.linearVelocity.z;
-        myRb.linearVelocity = new Vector3(myRb.linearVelocity.x, myRb.linearVelocity.y, Mathf.Clamp(targetZVelocity - 2, -1000f, 0f));
+        myRb.linearVelocity = new Vector3(myRb.linearVelocity.x, myRb.linearVelocity.y, Mathf.Clamp(targetZVelocity - 3, -1000f, 0f));
     }
 
     // This method is called automatically when another collider enters this object's trigger collider
