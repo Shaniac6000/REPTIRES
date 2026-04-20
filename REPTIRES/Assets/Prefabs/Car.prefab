@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb6fb422c2f78e4ab584d2e257a3ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  currentlyPlaying: 0
+  currentlyPlaying: 10
   playVolume: 0.6
 --- !u!82 &579336552865928282
 AudioSource:
